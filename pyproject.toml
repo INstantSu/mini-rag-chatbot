@@ -10,6 +10,7 @@ dependencies = [
     "google-genai>=1.47.0",
     "pgvector>=0.4.2",
     "psycopg>=3.2.13",
+    "pydantic-ai>=0.8.1",
     "pydantic-settings>=2.11.0",
     "redis>=7.0.1",
     "sqlmodel>=0.0.34",
