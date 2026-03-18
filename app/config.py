@@ -4,7 +4,7 @@ from pydantic_settings import BaseSettings, SettingsConfigDict
 class Settings(BaseSettings):
     app_name: str = "Mini RAG Chatbot"
     app_env: str = "dev"
-    database_url: str = "postgresql://postgres:postgres@localhost:5432/mini_rag"
+    database_url: str = "postgresql+psycopg://postgres:postgres@localhost:5433/mini_rag"
     redis_url: str = "redis://localhost:6379/0"
     gemini_api_key: str = ""
 
