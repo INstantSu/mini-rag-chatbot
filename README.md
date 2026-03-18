@@ -2,11 +2,28 @@
 
 A small learning project to understand a chatbot backend with FastAPI, Gemini, RAG, PostgreSQL, Redis, and Celery.
 
-## Step 1
+## Current Progress
+
 - FastAPI app skeleton
-- Environment settings
-- Database connection placeholder
+- Environment settings with `.env`
+- SQLModel database connection setup
 - Docker Compose with Postgres and Redis
+- Initial database models for `documents` and `chat_logs`
+- Health check endpoint
+
+## Project Structure
+
+```text
+mini-rag-chatbot/
+├─ app/
+│  ├─ config.py
+│  ├─ db.py
+│  ├─ main.py
+│  └─ models.py
+├─ docker-compose.yml
+├─ pyproject.toml
+└─ README.md
+```
 
 ## Run
 
@@ -28,6 +45,12 @@ Create a local `.env` file from `.env.example`.
 
 ```bash
 cp .env.example .env
+```
+
+The database URL should use the Docker Postgres port:
+
+```env
+DATABASE_URL=postgresql+psycopg://postgres:postgres@localhost:5433/mini_rag
 ```
 
 ### 3. Start Postgres and Redis
@@ -71,3 +94,14 @@ Or run:
 ```bash
 curl http://127.0.0.1:8000/health
 ```
+
+### 6. Check database tables
+
+```bash
+docker exec mini_rag_postgres psql -U postgres -d mini_rag -c "\dt"
+```
+
+Expected tables:
+
+- `documents`
+- `chat_logs`
