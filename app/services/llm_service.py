@@ -5,13 +5,17 @@ from app.config import settings
 
 client = genai.Client(api_key=settings.gemini_api_key)
 
-
-def generate_chat_answer(question: str) -> str:
+# @param context: RAG 컨텍스트
+def generate_chat_answer(question: str, context: str = "") -> str:
     prompt = f"""
 You are a small educational mental wellness chatbot.
 Give supportive and simple educational information.
 Do not present yourself as a medical or therapeutic system.
-Keep the answer short and beginner-friendly.
+Use the retrieved documents when they are relevant.
+If the documents are not enough, answer carefully and briefly.
+
+Retrieved documents:
+{context}
 
 User question:
 {question}

@@ -14,7 +14,7 @@ class Document(SQLModel, table=True):
     content: str
     embedding: Optional[List[float]] = Field(
         default=None,
-        sa_column=Column(Vector(), nullable=True),
+        sa_column=Column(Vector(768), nullable=True),
     )
     created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
