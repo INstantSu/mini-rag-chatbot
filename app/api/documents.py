@@ -4,6 +4,7 @@ from sqlmodel import Session
 from app.db import get_session
 from app.models import Document
 from app.schemas import DocumentCreate, DocumentRead
+from app.worker.tasks import generate_document_embedding
 
 
 router = APIRouter()
@@ -22,6 +23,8 @@ def create_document(
     session.add(document)
     session.commit()
     session.refresh(document)
+
+    generate_document_embedding.delay(document.id)
 
     return DocumentRead(
         id=document.id,
